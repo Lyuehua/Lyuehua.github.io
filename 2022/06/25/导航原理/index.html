@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"posta","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="大体做一下射电天文学的概念，它能解决什么问题。 它和导航有什么关系，它的某一项或者某几项技术技术在导航方面的贡献，是提高了精度啊还是引入了新型导航方法啊…… 以及这个技术的原理&#x2F;实现方法  射电天文学概述 射电天文学简介 -------------------------------------------------- 射 电天文导 航作 为天 文导 航技 术 的一个 分支 ，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="导航原理">
+<meta property="og:url" content="http://example.com/2022/06/25/%E5%AF%BC%E8%88%AA%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="huahua的个人学习小站">
+<meta property="og:description" content="大体做一下射电天文学的概念，它能解决什么问题。 它和导航有什么关系，它的某一项或者某几项技术技术在导航方面的贡献，是提高了精度啊还是引入了新型导航方法啊…… 以及这个技术的原理&#x2F;实现方法  射电天文学概述 射电天文学简介 -------------------------------------------------- 射 电天文导 航作 为天 文导 航技 术 的一个 分支 ，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-25T08:05:22.000Z">
+<meta property="article:modified_time" content="2022-06-26T11:57:08.000Z">
+<meta property="article:author" content="低碳钢的屈服极限">
+<meta property="article:tag" content="18系">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/06/25/%E5%AF%BC%E8%88%AA%E5%8E%9F%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>导航原理 | huahua的个人学习小站</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">huahua的个人学习小站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/25/%E5%AF%BC%E8%88%AA%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="低碳钢的屈服极限">
+      <meta itemprop="description" content="不积跬步无以至千里">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="huahua的个人学习小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          导航原理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-25 16:05:22" itemprop="dateCreated datePublished" datetime="2022-06-25T16:05:22+08:00">2022-06-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-26 19:57:08" itemprop="dateModified" datetime="2022-06-26T19:57:08+08:00">2022-06-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Electricity/" itemprop="url" rel="index"><span itemprop="name">Electricity</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>大体做一下射电天文学的概念，它能解决什么问题。<br />
+它和导航有什么关系，它的某一项或者某几项技术技术在导航方面的贡献，是提高了精度啊还是引入了新型导航方法啊……<br />
+以及这个技术的原理/实现方法</p>
+</blockquote>
+<h1 id="射电天文学概述">射电天文学概述</h1>
+<h1 id="射电天文学简介">射电天文学简介</h1>
+<p>--------------------------------------------------<br />
+射 电天文导 航作 为天 文导 航技 术 的一个 分支 ，是光学 天 文导航 的有
+益 补 充 和 拓展 。本 文 提 出 以射 电天文 导 航系统 在 小 口径射 电天
+线 的情况 下对 太 阳 、卫星 等信 标进 行测 量 ，可 达 到 相 当 高 的跟
+踪 定 位 精度 ，目前 该 系统 已成 功应 用于 某 型天文 导航 设备
+中。<br />
+----------------------------------------------------</p>
+<p>天文学的研究对象是地球大气层之外天体的形成、演化、动力学以及其它特性，这些天
+体包括太阳及其行星、彗星、恒星、星系、空间中的弥漫物质以及宇宙本身。
+&gt;例如“宇宙是如何开始的（或宇 宙有开端吗）？”、<br />
+&gt;“宇宙有多大？”、<br />
+&gt;“宇宙的年龄是多少？”<br />
+&gt;以及“宇宙如何终结（或是宇宙会终结吗）？”</p>
+<p>作为一门解释我们及我们所在的行星在宇宙中位置的科学，天文学对
+于整个人类具有非常重要的文化意义。现在的许多发现，如黑洞、类星体等已经经常出现在人们的日常对话中。<br />
+但是单凭光学无法满足观测天文发展的需求，天文学家在整个可用的电磁频谱范围内开展观测，观测范围远远超过了视觉或“光学”
+区域。<br />
+每个频率范围都拥有独特的观察视角，且通常需要该频率范围专用的望远镜和探测
+器。射电天文学家研究的是在无线电频谱范围内特定频率上发射或吸收能量的天体：在地面上，研究工作可以在13
+MHz至2 000 GHz范围内任何一处大气层完全透明的区域内开展。</p>
+<h2 id="射电天文学的作用">射电天文学的作用</h2>
+<ul>
+<li>探测宇宙
+<ul>
+<li>宇宙的一些组成部分只能借助其在无线电频率方面的特征进行研究。特别是宇宙中最为
+丰富的物质成分 – 中性氢（HI），它只能通过其在1 420
+MHz频率处的谱线观测。</li>
+<li>值得注意的是，一旦绘制出HI在我们所在银河系中的分布情况（参见图0.1），便可以最终确定银河
+系的中心，清楚地绘制银河系的旋臂，而我们的位置则被确定为位于一个外侧的旋臂上。</li>
+<li>射电观测可以对过去的光学工作进行
+必不可少的补充，这是因为在光学波长，银河中心会被星际尘埃所遮挡，然而，通过容易测量的HI发射线的多普勒频移，则可以确定银河系沿视线方向的分布情况。</li>
+<li>通过绘制我们所在银河系的连续辐射，一旦确定了银河系中心的准确位置，便显示出该中心恰好是一个极强的
+射电源，近期的近红外（NIR）工作已经证明该处是一个超大质量的黑洞。</li>
+<li><strong>这个典型的例子说明，射电天文既是整体天文研究必不可少的部分，同时又可以为电磁频谱范围内其它波长处的观测结果的补充数据。</strong></li>
+</ul></li>
+<li>探测射电源
+<ul>
+<li>在某些星系的两侧近乎等距的存在成对的射电源。</li>
+<li>这意味着，光学图像所示的这些星系中存在
+着与这些星系相关、但又与之距离很远的巨大射电发射区域。</li>
+</ul></li>
+<li>了解宇宙实体
+<ul>
+<li>1964年发现近乎各向同性的宇宙微波背景（CMB）</li>
+<li>在30至300GHz频率间的天空连续谱观 测显示，CMB具有2.73
+K的亮温度。</li>
+<li>CMB全天巡天，探测到了地球/太阳/星系相对于CMB的运动带来的多普勒效应以及CMB的
+亮温度存在微小的点对点变化（仅有百万分之几）。</li>
+<li>提供独立证据证明宇宙的扩张速率在不断提高</li>
+</ul></li>
+<li>探测中子星、脉冲星
+<ul>
+<li>在中子发现不久之后，1934年人们即预测了中子星的存在。</li>
+<li>1967年，探测到快速发射脉 冲的射电源（脉冲星）</li>
+<li>一组飞快旋转、
+周期以毫秒计的特定脉冲星可被作为高度准确的时钟使用。</li>
+</ul></li>
+</ul>
+<h1 id="射电天文学在导航中的作用">射电天文学在导航中的作用</h1>
+<h2 id="射电天文导航技术">射电天文导航技术</h2>
+<h3 id="天文导航技术">天文导航技术</h3>
+<p>天文导航是一种高精度、自主式导航技术。主要以光学和红外为探测手段,
+根据恒星天体的精确坐标位置及其已知运动规律,
+测量天体相对于航行体参考基准面的高度角,
+从而计算出航行体位置与航向。<br />
+天文导航与惯性系统组合时,
+可产生一个极其精确的导航解;而且星体的方位和高度数据还可用来向惯性系统提供调平信息。所以天文导航技术在现代武器装备系统中显得尤为重要。</p>
+<h3 id="射电天文导航技术-1">射电天文导航技术</h3>
+<p>天文导航与惯性系统组合时,
+可产生一个极其精确的导航解;而且星体的方位和高度数据还可用来向惯性系统提供调平信息。所以天文导航技术在现代武器装备系统中显得尤为重要。<br />
+射电探测是20世纪30年代发展的一种天文观测技术,
+其利用微波辐射技术对天体辐射的射电信号进行探测。天体射电虽然很弱,
+但处于大气窗口波长的天体射电信号受天气影响很小,
+利用天体射电信号实现天文导航,
+可克服气象条件及昼夜明暗的限制[1]。因此射电导航开辟了天文导航技术新领域,
+为实现装备化奠定了基础。</p>
+<h2 id="守时系统的支撑体系">守时系统的支撑体系</h2>
+<p>射电天文系统包括高增益天线、低噪声接收机、固态振荡器和倍频器。参量放大器、低
+温冷却的砷化镓场效应晶体管放大器、HEMT放大器和SIS混频器等的开发都受到射电天文
+学需求的促动或影响。这些发展已使得接收机可以再在极宽带宽且温度低至2 K
+状态下工
+作。目前，在一些频率实现的噪声温度已接近技术上可能达到的量子极限。一些最尖端的深
+空电信系统使用这些技术，其本地振荡器按照原子频率标准实现亚皮秒单位的时间同步。这些标准用作地面和空间导航系统守时系统的支撑体系。</p>
+<h2
+id="无线电干涉测量技术地面和空间导航">无线电干涉测量技术——地面和空间导航</h2>
+<p>随着时间的推移，天文学对地面和空间导航做出重要贡献。水上导航无线电六分仪的发
+展实现了在阴雨天准确定位。最近无线电干涉测量技术一项应用，是关于多点定位的手机紧
+急定位，它是以附近天线杆收到的信号强度为基础。通过准确计算一物体发射的信号到达三
+个或以上接收机（TDOA）的时差，可以对该物体精确定位这，亦可通过测量三个或以上发射机发射信号的TDOA用于定位接收机。</p>
+<h2
+id="毫秒脉冲星计时观测时间与频率标准">毫秒脉冲星计时观测——时间与频率标准</h2>
+<p>出于需要，甚长基线干涉测量（VLBI）团体发展了非常稳定和精确的时间标准和授时
+方法，授时方法的不确定度为10-16分之几秒。这些系统后来被商业开发，现用于卫星导航、航天通信和国防等目的。通过为国际测地与天体测量（IVS）服务的VLBI维护工作，全球卫星导航业务（RNSS）系统（GPS、Glonass、Galileo）的时间和协调系统与地球和宇宙相关联。<br />
+精确的人造时钟迎来了安全导航的时代。国际时间局不断探索制造更加精确的时钟，目
+前通过综合世界各地原子钟数据确定时间。但射电天文学家开展的毫秒脉冲星计时观测，是
+对国际原子时标准长期稳定性进行独立检查的最佳方式。计时观测是利用最稳定的脉冲星进
+行的，以最大限度减少沿视距方向星际介质电子成分长期变化的任何影响，而且最大限度地
+减少单个脉冲星的异常表现。也可通过对比双星系统中毫秒脉冲星的计时观测结果与系统轨道参数的符合程度，独立地检查国际原子时标准的长期稳定性。</p>
+<h2
+id="地面vlbi技术和精确的多普勒跟踪太阳系内高精度空间导航任务">地面VLBI技术和精确的多普勒跟踪——太阳系内高精度空间导航任务</h2>
+<p>虽然开发VLBI技术的目的是收集有关天体详细结构和位置的数据，但该技术亦用于许
+多其他用途。因此，精准测量的遥远类星体和射电源的VLBI位置可为人类提供最精确的空
+间参考坐标系。利用天体作为参考点，地面VLBI就可测量望远镜在地球上的固有运动，如
+由于大陆漂移或断层构造板块滑移造成的运动。这些测量结果有助于估计发生地震的可能
+性。目前已成立了国际甚长基线干涉测地与天体测量服务组织（IVS），提供支持测地、地
+球物理和天体测量研究和操作的服务5。地面VLBI技术和精确的多普勒跟踪亦用于太阳系内
+高精度空间导航任务。因此，在ESA惠更斯号探测器进入土星卫星Titan（土卫六）大气层时就对其位置进行了精确跟踪</p>
+<h2 id="vlbi的大地测量学">VLBI的大地测量学</h2>
+<p>VLBI是测量和监测地球的重要手段。通过世界范围内不同地点天线构成的网络以及具
+有精确测定位置的射电源系统，可以确定一对天线之间的距离，精确度可达到若干毫米。
+VLBI是唯一提供完整地球方位参数（EOPs：白昼长度和极点方位）的大地测量技术，它可
+针对惯性天球参考架（CRF）获得地球的位置（前者由类星体表描述）。通过测量EOP，
+VLBI可提供地球参考架（TRF）的绝对方位以及比例。EOP对于航天器导航至关重要，但它
+们在短时间内更迭变化且无法预测，因此需要进行定期测量，例如，没有VLBI，则无法进
+行全球定位系统（GPS）卫星数据的校准。国际大地测量学和天文学VLBI服务组织（IVS）（Schuh和Behrend，2012年），负责对CRF进行充实和完善并定期测量EOP。</p>
+<h1 id="深空网中最基本的组成部分">深空网中最基本的组成部分</h1>
+<p>完整意义上的深空网由射电天文观测系统、太阳系雷达和深空联合体所构成。</p>
+<h1
+id="多普勒测速的卫星导航定位技术原理简述">多普勒测速的卫星导航定位技术原理简述</h1>
+<p>采用双曲面交会定位原理。用户接收导航卫星发送的无线电信号，根据多普勒频移效应，测定用户到导航卫星的相对速度，得到用户到两颗导航卫星的距离差，从而构成两个以上的双曲面，
+再通过双曲面相交形成双曲面交会点，从而推算出用户位置。美国于1960年4月开始发射的“子午仪”导航卫星就是采用这种方式。1957年，美国两位科学家在跟踪苏联首颗卫星时无意中发现，
+收到的无线电信号有多普勒频移效应，即卫星在飞近地面接收机时收到的无线电频率逐渐增高，飞远时则逐渐降低。科学家对这种现象认真研究后产生灵感，卫星的轨道可由地面站测得的
+多普勒频移曲线确定，若知道卫星的精确轨道，就能确定地面接收机的位置。该技术的缺点是不能连续实时导航、两次定位时间间隔太长、只能提供二维定位，对高速移动物体测量误差较大等。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/18%E7%B3%BB/" rel="tag"># 18系</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/25/MATLAB/" rel="prev" title="MATLAB">
+      <i class="fa fa-chevron-left"></i> MATLAB
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%84%E7%94%B5%E5%A4%A9%E6%96%87%E5%AD%A6%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">射电天文学概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%84%E7%94%B5%E5%A4%A9%E6%96%87%E5%AD%A6%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">射电天文学简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%84%E7%94%B5%E5%A4%A9%E6%96%87%E5%AD%A6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">射电天文学的作用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%84%E7%94%B5%E5%A4%A9%E6%96%87%E5%AD%A6%E5%9C%A8%E5%AF%BC%E8%88%AA%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">射电天文学在导航中的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%84%E7%94%B5%E5%A4%A9%E6%96%87%E5%AF%BC%E8%88%AA%E6%8A%80%E6%9C%AF"><span class="nav-number">3.1.</span> <span class="nav-text">射电天文导航技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A9%E6%96%87%E5%AF%BC%E8%88%AA%E6%8A%80%E6%9C%AF"><span class="nav-number">3.1.1.</span> <span class="nav-text">天文导航技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%84%E7%94%B5%E5%A4%A9%E6%96%87%E5%AF%BC%E8%88%AA%E6%8A%80%E6%9C%AF-1"><span class="nav-number">3.1.2.</span> <span class="nav-text">射电天文导航技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%88%E6%97%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%94%AF%E6%92%91%E4%BD%93%E7%B3%BB"><span class="nav-number">3.2.</span> <span class="nav-text">守时系统的支撑体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E7%BA%BF%E7%94%B5%E5%B9%B2%E6%B6%89%E6%B5%8B%E9%87%8F%E6%8A%80%E6%9C%AF%E5%9C%B0%E9%9D%A2%E5%92%8C%E7%A9%BA%E9%97%B4%E5%AF%BC%E8%88%AA"><span class="nav-number">3.3.</span> <span class="nav-text">无线电干涉测量技术——地面和空间导航</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%AB%E7%A7%92%E8%84%89%E5%86%B2%E6%98%9F%E8%AE%A1%E6%97%B6%E8%A7%82%E6%B5%8B%E6%97%B6%E9%97%B4%E4%B8%8E%E9%A2%91%E7%8E%87%E6%A0%87%E5%87%86"><span class="nav-number">3.4.</span> <span class="nav-text">毫秒脉冲星计时观测——时间与频率标准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%B0%E9%9D%A2vlbi%E6%8A%80%E6%9C%AF%E5%92%8C%E7%B2%BE%E7%A1%AE%E7%9A%84%E5%A4%9A%E6%99%AE%E5%8B%92%E8%B7%9F%E8%B8%AA%E5%A4%AA%E9%98%B3%E7%B3%BB%E5%86%85%E9%AB%98%E7%B2%BE%E5%BA%A6%E7%A9%BA%E9%97%B4%E5%AF%BC%E8%88%AA%E4%BB%BB%E5%8A%A1"><span class="nav-number">3.5.</span> <span class="nav-text">地面VLBI技术和精确的多普勒跟踪——太阳系内高精度空间导航任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vlbi%E7%9A%84%E5%A4%A7%E5%9C%B0%E6%B5%8B%E9%87%8F%E5%AD%A6"><span class="nav-number">3.6.</span> <span class="nav-text">VLBI的大地测量学</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%B1%E7%A9%BA%E7%BD%91%E4%B8%AD%E6%9C%80%E5%9F%BA%E6%9C%AC%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="nav-number">4.</span> <span class="nav-text">深空网中最基本的组成部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B5%8B%E9%80%9F%E7%9A%84%E5%8D%AB%E6%98%9F%E5%AF%BC%E8%88%AA%E5%AE%9A%E4%BD%8D%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0"><span class="nav-number">5.</span> <span class="nav-text">多普勒测速的卫星导航定位技术原理简述</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">低碳钢的屈服极限</p>
+  <div class="site-description" itemprop="description">不积跬步无以至千里</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lyuehua" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lyuehua" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lyhua4759@gmail.com" title="E-Mail → mailto:lyhua4759@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">低碳钢的屈服极限</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'true';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
