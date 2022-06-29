@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
@@ -2410,7 +2410,7 @@ Both keys get a dimension or skip as value and are initialized to <code>\medskip
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-29 14:27:08" itemprop="dateModified" datetime="2022-06-29T14:27:08+08:00">2022-06-29</time>
+                <time title="修改时间：2022-06-29 15:41:04" itemprop="dateModified" datetime="2022-06-29T15:41:04+08:00">2022-06-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2483,8 +2483,24 @@ markdown-it-latex2img 的特点：</p>
 <ol start="2">
 <li>配置</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># _config.yml 文件后加上下列语句</span><br><span class="line">markdown:</span><br><span class="line">  plugins:</span><br><span class="line">    - markdown-it-latex2img</span><br></pre></td></tr></table></figure>
-<p>缺点是将公式换成了图片，影响阅读。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># _config.<span class="property">yml</span> 文件后加上下列语句</span><br><span class="line"><span class="attr">markdown</span>:</span><br><span class="line">  <span class="attr">plugins</span>:</span><br><span class="line">    - markdown-it-latex2img</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>语法：见<a target="_blank" rel="noopener" href="https://makergyt.github.io/markdown-it-latex2img/">Markdown-it-latex2img示例</a><br>
+<strong>开头的<code>$</code>必须在其右边紧跟一个非空格字符，而结尾的<code>$</code>必须在其左边紧接一个非空格字符，并且不能紧跟一个数字。</strong><br>
+缺点是将公式换成了图片，影响阅读；语法繁琐，不够自由；公式中的空格被当作无用符号被省略，影响表达。但除此之外可以解决原有的所有渲染问题。</li>
+</ol>
+<h3 id="解决方法2：更换-pandoc-引擎">解决方法2：更换 pandoc 引擎</h3>
+<p>使用这个 renderer 之前请确保你已经安装了<a target="_blank" rel="noopener" href="https://github.com/jgm/pandoc/releases/tag/2.18">Pandoc</a>，然后卸载 Hexo 自带的 renderer，安装 Pandoc renderer:</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-pandoc --save</span><br></pre></td></tr></table></figure>
+<p>注意：如果使用该引擎，那么书写 Markdown 时需要遵循 <a target="_blank" rel="noopener" href="https://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc 对 Markdown 的规定</a>。有一些比较明显的需要注意的事项：正常的文字后面如果跟的是<a target="_blank" rel="noopener" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#lists">list</a>, <a target="_blank" rel="noopener" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables">table</a>或者<a target="_blank" rel="noopener" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#blockquotes">quotation</a>，文字后面需要空一行，如果不空行，这些环境将不能被 Pandoc renderer 正常渲染。<br>
+另外，文中的 URL 使用 Pandoc 渲染以后是普通的文本格式，不能点击，可以通过用 &lt;&gt; 包围 URL 的方式把 URL 变成可点击的 URL。<br>
+在使用该引擎时，发生无法渲染的错误，与 Pandoc 的 <code>smart</code> 参数有关，具体不是很清楚是什么原因，在博客根目录中打开 <code>node_modules\hexo-renderer-pandoc\index.js</code> ，把 <code>args</code> 变量进行修改：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var args = [ &#x27;-f&#x27;, &#x27;markdown-smart&#x27;+extensions, &#x27;-t&#x27;, &#x27;html-smart&#x27;, math]</span></span><br><span class="line"><span class="keyword">var</span> args = [ <span class="string">&#x27;-f&#x27;</span>, <span class="string">&#x27;markdown&#x27;</span>+extensions, <span class="string">&#x27;-t&#x27;</span>, <span class="string">&#x27;html&#x27;</span>, math]</span><br></pre></td></tr></table></figure>
+<p>关于如何在 Markdown 中使用 \LaTeX 公式，参考<a target="_blank" rel="noopener" href="https://kivenckl.github.io/post/9a79e44d.html">Markdown 中 LaTeX 数学公式命令</a><br>
+缺点是本人按照网友提示操作之后并没有成功，最后决定暂时采用的一种方法。<br>
+<strong>参考文献</strong><br>
+<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c9beedaf08e4">Hexo 搭建个人博客指南</a><br>
+<a target="_blank" rel="noopener" href="https://jdhao.github.io/2017/10/06/hexo-markdown-latex-equation/">Hexo 书写 LaTeX 公式时的一些问题及解决方法</a></p>
 
       
     </div>
@@ -2535,7 +2551,7 @@ markdown-it-latex2img 的特点：</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-29 14:07:20" itemprop="dateModified" datetime="2022-06-29T14:07:20+08:00">2022-06-29</time>
+                <time title="修改时间：2022-06-29 16:04:18" itemprop="dateModified" datetime="2022-06-29T16:04:18+08:00">2022-06-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2868,6 +2884,63 @@ markdown-it-latex2img 的特点：</p>
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'true';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
