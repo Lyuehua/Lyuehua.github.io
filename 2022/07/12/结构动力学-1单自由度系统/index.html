@@ -20,20 +20,35 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"posta","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+  <meta name="description" content="对工程实践中的结构振动系统可分为离散模型和连续模型，其中离散模型具有 (可数的)有限个自由度, 而连续模型则用(空间)分布式参数描述、具有(可数的)无限个自由度。单自由度系统是最简单的离散振动系统。 自由度：确定某一个机构系统几何位置的独立参数的数目。  在振动系统中只有质量及其分布、运动阻尼、恢复力特性等少数参数对振动特性及其响应起主导作用，据此，人们提出了集中参数模型。  通常将标准单自由度“">
 <meta property="og:type" content="article">
-<meta property="og:title" content="结构动力学">
-<meta property="og:url" content="http://example.com/2022/06/22/Dynamics_of_Structures/index.html">
+<meta property="og:title" content="结构动力学-1单自由度系统">
+<meta property="og:url" content="http://example.com/2022/07/12/%E7%BB%93%E6%9E%84%E5%8A%A8%E5%8A%9B%E5%AD%A6-1%E5%8D%95%E8%87%AA%E7%94%B1%E5%BA%A6%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="huahua的个人学习小站">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="对工程实践中的结构振动系统可分为离散模型和连续模型，其中离散模型具有 (可数的)有限个自由度, 而连续模型则用(空间)分布式参数描述、具有(可数的)无限个自由度。单自由度系统是最简单的离散振动系统。 自由度：确定某一个机构系统几何位置的独立参数的数目。  在振动系统中只有质量及其分布、运动阻尼、恢复力特性等少数参数对振动特性及其响应起主导作用，据此，人们提出了集中参数模型。  通常将标准单自由度“">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-22T07:59:45.220Z">
-<meta property="article:modified_time" content="2022-06-25T07:12:20.000Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/73486724/178445834-3ab1783c-0096-4c12-9c17-b788c4abbf4a.png">
+<meta property="og:image" content="https://math.now.sh?inline=F_s%20%3D%20kx%20%2B%20%5Cvarepsilon%20x%5E3">
+<meta property="og:image" content="https://user-images.githubusercontent.com/73486724/178447727-05232b47-52a7-42f6-be0c-b798e286005a.png">
+<meta property="og:image" content="https://math.now.sh?inline=M_k%20%3D%20K_%7B%5Ctheta%7D%5Ccdot%20%5Ctheta">
+<meta property="og:image" content="https://math.now.sh?inline=K_%7B%5Ctheta%7D">
+<meta property="og:image" content="https://user-images.githubusercontent.com/73486724/178448625-0348f2e0-7160-4688-8bad-6786ca39a943.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/73486724/178450395-076f8c28-c0da-4f36-b89d-e3fd8eae8fa7.png">
+<meta property="og:image" content="https://math.now.sh?inline=F_d">
+<meta property="og:image" content="https://math.now.sh?inline=N%20%5Ccdot%20s%20%5Ccdot%20m%5E%7B-1%7D">
+<meta property="og:image" content="https://math.now.sh?from=F%20%3D%20c%5Cddot%20x%0A">
+<meta property="og:image" content="https://math.now.sh?from=F_m%20%3D%20m%20%5Cddot%20x%28t%29%0A">
+<meta property="og:image" content="https://math.now.sh?from=M_m%20%3D%20J%20%5Cddot%20%5Cvarphi%28t%29%0A">
+<meta property="og:image" content="https://math.now.sh?inline=K_%7Beq%7D%20%3D%20%5B%5CSigma%20%5Cfrac%7B1%7D%7Bk_i%7D%5D">
+<meta property="og:image" content="https://user-images.githubusercontent.com/73486724/178452323-400afa69-8c0a-4768-97ad-511b2981d138.png">
+<meta property="article:published_time" content="2022-07-12T07:57:42.000Z">
+<meta property="article:modified_time" content="2022-07-12T09:08:38.000Z">
 <meta property="article:author" content="低碳钢的屈服极限">
 <meta property="article:tag" content="Physics">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/73486724/178445834-3ab1783c-0096-4c12-9c17-b788c4abbf4a.png">
 
-<link rel="canonical" href="http://example.com/2022/06/22/Dynamics_of_Structures/">
+<link rel="canonical" href="http://example.com/2022/07/12/%E7%BB%93%E6%9E%84%E5%8A%A8%E5%8A%9B%E5%AD%A6-1%E5%8D%95%E8%87%AA%E7%94%B1%E5%BA%A6%E7%B3%BB%E7%BB%9F/">
 
 
 <script id="page-configurations">
@@ -46,7 +61,7 @@
   };
 </script>
 
-  <title>结构动力学 | huahua的个人学习小站</title>
+  <title>结构动力学-1单自由度系统 | huahua的个人学习小站</title>
   
 
 
@@ -161,7 +176,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/22/Dynamics_of_Structures/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/12/%E7%BB%93%E6%9E%84%E5%8A%A8%E5%8A%9B%E5%AD%A6-1%E5%8D%95%E8%87%AA%E7%94%B1%E5%BA%A6%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -174,7 +189,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          结构动力学
+          结构动力学-1单自由度系统
         </h1>
 
         <div class="post-meta">
@@ -183,16 +198,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-06-22 15:59:45" itemprop="dateCreated datePublished" datetime="2022-06-22T15:59:45+08:00">2022-06-22</time>
+              <time title="创建时间：2022-07-12 15:57:42 / 修改时间：17:08:38" itemprop="dateCreated datePublished" datetime="2022-07-12T15:57:42+08:00">2022-07-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-25 15:12:20" itemprop="dateModified" datetime="2022-06-25T15:12:20+08:00">2022-06-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -200,6 +209,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Mechanics/" itemprop="url" rel="index"><span itemprop="name">Mechanics</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mechanics/%E7%BB%93%E6%9E%84%E5%8A%A8%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">结构动力学</span></a>
                 </span>
             </span>
 
@@ -214,29 +227,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <p>对工程实践中的结构振动系统可分为离散模型和连续模型，其中离散模型具有 <em>(可数的)有限个自由度</em>, 而连续模型则用(空间)分布式参数描述、<em>具有(可数的)无限个自由度</em>。单自由度系统是最简单的离散振动系统。<br>
+<strong>自由度</strong>：确定某一个机构系统几何位置的独立参数的数目。</p>
+<blockquote>
+<p>在振动系统中只有质量及其分布、运动阻尼、恢复力特性等少数参数对振动特性及其响应起主导作用，据此，人们提出了集中参数模型。</p>
+</blockquote>
+<p>通常将标准单自由度“质-弹-阻”模型称为其所代表的原系统的单自由度等效振动系统。</p>
+<h1>单自由度系统的自由振动</h1>
+<h2 id="构成离散系统的自由振动">构成离散系统的自由振动</h2>
+<p><img src="https://user-images.githubusercontent.com/73486724/178445834-3ab1783c-0096-4c12-9c17-b788c4abbf4a.png" alt="TE0A6I_4D7(BFLW7@F$`4L0"></p>
+<p>实际弹簧的力与变形的关系为：<img src="https://math.now.sh?inline=F_s%20%3D%20kx%20%2B%20%5Cvarepsilon%20x%5E3" style="display:inline-block;margin: 0;"/></p>
+<p><img src="https://user-images.githubusercontent.com/73486724/178447727-05232b47-52a7-42f6-be0c-b798e286005a.png" alt="image"></p>
+<p>扭转弹簧（角振动或扭转系统）<br>
+在小变形范围内:<img src="https://math.now.sh?inline=M_k%20%3D%20K_%7B%5Ctheta%7D%5Ccdot%20%5Ctheta" style="display:inline-block;margin: 0;"/><br>
+<img src="https://math.now.sh?inline=K_%7B%5Ctheta%7D" style="display:inline-block;margin: 0;"/>:扭转弹簧刚度，N·m/rad</p>
+<h3 id="弹性元件">弹性元件</h3>
+<p><img src="https://user-images.githubusercontent.com/73486724/178448625-0348f2e0-7160-4688-8bad-6786ca39a943.png" alt="image"></p>
+<h3 id="阻尼元件">阻尼元件</h3>
+<ol>
+<li>粘滞阻尼</li>
+<li>干摩擦阻尼（库伦阻尼）</li>
+<li>滞后阻尼<br>
+<img src="https://user-images.githubusercontent.com/73486724/178450395-076f8c28-c0da-4f36-b89d-e3fd8eae8fa7.png" alt="image"><br>
+如无特别说明, 本课程所涉及的阻尼均指粘滞阻尼, 其阻尼力<img src="https://math.now.sh?inline=F_d" style="display:inline-block;margin: 0;"/>与阻尼器(用 c 表示)两端的相对速度成正比, 如图所示, 其中比例系数 c 称为粘性阻尼系数, 其单位为牛顿秒/米<img src="https://math.now.sh?inline=N%20%5Ccdot%20s%20%5Ccdot%20m%5E%7B-1%7D" style="display:inline-block;margin: 0;"/>。</li>
+</ol>
+<p style=""><img src="https://math.now.sh?from=F%20%3D%20c%5Cddot%20x%0A" /></p><h3 id="惯性元件">惯性元件</h3>
+<p>系统的质量元件，提供惯性力。</p>
+<p style=""><img src="https://math.now.sh?from=F_m%20%3D%20m%20%5Cddot%20x%28t%29%0A" /></p><p style=""><img src="https://math.now.sh?from=M_m%20%3D%20J%20%5Cddot%20%5Cvarphi%28t%29%0A" /></p><h2 id="等效刚度">等效刚度</h2>
+<h3 id="弹性元件的组合">弹性元件的组合</h3>
+<p>并联：位移相等，$K_{eq} = \Sigma k_i $<br>
+串联：恢复力相等，<img src="https://math.now.sh?inline=K_%7Beq%7D%20%3D%20%5B%5CSigma%20%5Cfrac%7B1%7D%7Bk_i%7D%5D" style="display:inline-block;margin: 0;"/><br>
+<strong>思考</strong><br>
+<img src="https://user-images.githubusercontent.com/73486724/178452323-400afa69-8c0a-4768-97ad-511b2981d138.png" alt="image"></p>
+<p>m = 0：并联<br>
+m ≠ 0：串联</p>
+<blockquote>
+<p>m = 0 时，一旦有不平衡的力，加速度瞬间达到无穷大，两边的力必然平衡，为串联。</p>
+</blockquote>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+ 实际工程的弹性元件比较复杂，为了方便分析，通常将复杂弹性元件系统简</span></span><br><span class="line"><span class="addition">+ 化为一个等价的弹性元件，要通过弹性元件系统等效刚度的计算来实现。</span></span><br></pre></td></tr></table></figure>
+<p><strong>将复杂弹性元件系统简化为一个简单的弹性元件，关键是二者刚度相等。</strong></p>
 
     </div>
 
@@ -254,11 +283,11 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2022/06/22/%E5%BE%AE%E7%A7%AF%E5%88%86/" rel="next" title="微积分">
-      微积分 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/07/03/test/" rel="prev" title="test">
+      <i class="fa fa-chevron-left"></i> test
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -317,7 +346,7 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#quick-start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">单自由度系统的自由振动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E6%88%90%E7%A6%BB%E6%95%A3%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%87%AA%E7%94%B1%E6%8C%AF%E5%8A%A8"><span class="nav-number">1.1.</span> <span class="nav-text">构成离散系统的自由振动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%B9%E6%80%A7%E5%85%83%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">弹性元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%BB%E5%B0%BC%E5%85%83%E4%BB%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">阻尼元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%AF%E6%80%A7%E5%85%83%E4%BB%B6"><span class="nav-number">1.1.3.</span> <span class="nav-text">惯性元件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E6%95%88%E5%88%9A%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">等效刚度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%B9%E6%80%A7%E5%85%83%E4%BB%B6%E7%9A%84%E7%BB%84%E5%90%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">弹性元件的组合</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -331,14 +360,14 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
