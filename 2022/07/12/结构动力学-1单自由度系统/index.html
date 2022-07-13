@@ -17,32 +17,23 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"posta","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="对工程实践中的结构振动系统可分为离散模型和连续模型，其中离散模型具有 (可数的)有限个自由度, 而连续模型则用(空间)分布式参数描述、具有(可数的)无限个自由度。单自由度系统是最简单的离散振动系统。 自由度：确定某一个机构系统几何位置的独立参数的数目。  在振动系统中只有质量及其分布、运动阻尼、恢复力特性等少数参数对振动特性及其响应起主导作用，据此，人们提出了集中参数模型。  通常将标准单自由度“">
+  <meta name="description" content="对工程实践中的结构振动系统可分为离散模型和连续模型，其中离散模型具有 (可数的)有限个自由度, 而连续模型则用(空间)分布式参数描述、具有(可数的)无限个自由度。单自由度系统是最简单的离散振动系统。自由度：确定某一个机构系统几何位置的独立参数的数目。    在振动系统中只有质量及其分布、运动阻尼、恢复力特性等少数参数对振动特性及其响应起主导作用，据此，人们提出了集中参数模型。  通常将标准单自由度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="结构动力学-1单自由度系统">
 <meta property="og:url" content="http://example.com/2022/07/12/%E7%BB%93%E6%9E%84%E5%8A%A8%E5%8A%9B%E5%AD%A6-1%E5%8D%95%E8%87%AA%E7%94%B1%E5%BA%A6%E7%B3%BB%E7%BB%9F/index.html">
-<meta property="og:site_name" content="huahua的个人学习小站">
-<meta property="og:description" content="对工程实践中的结构振动系统可分为离散模型和连续模型，其中离散模型具有 (可数的)有限个自由度, 而连续模型则用(空间)分布式参数描述、具有(可数的)无限个自由度。单自由度系统是最简单的离散振动系统。 自由度：确定某一个机构系统几何位置的独立参数的数目。  在振动系统中只有质量及其分布、运动阻尼、恢复力特性等少数参数对振动特性及其响应起主导作用，据此，人们提出了集中参数模型。  通常将标准单自由度“">
+<meta property="og:site_name" content="不积跬步无以至千里">
+<meta property="og:description" content="对工程实践中的结构振动系统可分为离散模型和连续模型，其中离散模型具有 (可数的)有限个自由度, 而连续模型则用(空间)分布式参数描述、具有(可数的)无限个自由度。单自由度系统是最简单的离散振动系统。自由度：确定某一个机构系统几何位置的独立参数的数目。    在振动系统中只有质量及其分布、运动阻尼、恢复力特性等少数参数对振动特性及其响应起主导作用，据此，人们提出了集中参数模型。  通常将标准单自由度">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://user-images.githubusercontent.com/73486724/178445834-3ab1783c-0096-4c12-9c17-b788c4abbf4a.png">
-<meta property="og:image" content="https://math.now.sh?inline=F_s%20%3D%20kx%20%2B%20%5Cvarepsilon%20x%5E3">
 <meta property="og:image" content="https://user-images.githubusercontent.com/73486724/178447727-05232b47-52a7-42f6-be0c-b798e286005a.png">
-<meta property="og:image" content="https://math.now.sh?inline=M_k%20%3D%20K_%7B%5Ctheta%7D%5Ccdot%20%5Ctheta">
-<meta property="og:image" content="https://math.now.sh?inline=K_%7B%5Ctheta%7D">
 <meta property="og:image" content="https://user-images.githubusercontent.com/73486724/178448625-0348f2e0-7160-4688-8bad-6786ca39a943.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/73486724/178450395-076f8c28-c0da-4f36-b89d-e3fd8eae8fa7.png">
-<meta property="og:image" content="https://math.now.sh?inline=F_d">
-<meta property="og:image" content="https://math.now.sh?inline=N%20%5Ccdot%20s%20%5Ccdot%20m%5E%7B-1%7D">
-<meta property="og:image" content="https://math.now.sh?from=F%20%3D%20c%5Cddot%20x%0A">
-<meta property="og:image" content="https://math.now.sh?from=F_m%20%3D%20m%20%5Cddot%20x%28t%29%0A">
-<meta property="og:image" content="https://math.now.sh?from=M_m%20%3D%20J%20%5Cddot%20%5Cvarphi%28t%29%0A">
-<meta property="og:image" content="https://math.now.sh?inline=K_%7Beq%7D%20%3D%20%5B%5CSigma%20%5Cfrac%7B1%7D%7Bk_i%7D%5D">
 <meta property="og:image" content="https://user-images.githubusercontent.com/73486724/178452323-400afa69-8c0a-4768-97ad-511b2981d138.png">
 <meta property="article:published_time" content="2022-07-12T07:57:42.000Z">
-<meta property="article:modified_time" content="2022-07-12T09:08:38.000Z">
+<meta property="article:modified_time" content="2022-07-13T15:27:08.000Z">
 <meta property="article:author" content="低碳钢的屈服极限">
 <meta property="article:tag" content="Physics">
 <meta name="twitter:card" content="summary">
@@ -61,7 +52,7 @@
   };
 </script>
 
-  <title>结构动力学-1单自由度系统 | huahua的个人学习小站</title>
+  <title>结构动力学-1单自由度系统 | 不积跬步无以至千里</title>
   
 
 
@@ -92,7 +83,119 @@
   </style>
 </noscript>
 
-</head>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -112,7 +215,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">huahua的个人学习小站</h1>
+      <h1 class="site-title">不积跬步无以至千里</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -181,11 +284,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="低碳钢的屈服极限">
-      <meta itemprop="description" content="不积跬步无以至千里">
+      <meta itemprop="description" content="个人学习小站">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="huahua的个人学习小站">
+      <meta itemprop="name" content="不积跬步无以至千里">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -198,10 +301,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-12 15:57:42 / 修改时间：17:08:38" itemprop="dateCreated datePublished" datetime="2022-07-12T15:57:42+08:00">2022-07-12</time>
+              <time title="创建时间：2022-07-12 15:57:42" itemprop="dateCreated datePublished" datetime="2022-07-12T15:57:42+08:00">2022-07-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-13 23:27:08" itemprop="dateModified" datetime="2022-07-13T23:27:08+08:00">2022-07-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -227,46 +336,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>对工程实践中的结构振动系统可分为离散模型和连续模型，其中离散模型具有 <em>(可数的)有限个自由度</em>, 而连续模型则用(空间)分布式参数描述、<em>具有(可数的)无限个自由度</em>。单自由度系统是最简单的离散振动系统。<br>
-<strong>自由度</strong>：确定某一个机构系统几何位置的独立参数的数目。</p>
+        <p>对工程实践中的结构振动系统可分为离散模型和连续模型，其中离散模型具有 <em>(可数的)有限个自由度</em>, 而连续模型则用(空间)分布式参数描述、<em>具有(可数的)无限个自由度</em>。单自由度系统是最简单的离散振动系统。<br><strong>自由度</strong>：确定某一个机构系统几何位置的独立参数的数目。  </p>
 <blockquote>
 <p>在振动系统中只有质量及其分布、运动阻尼、恢复力特性等少数参数对振动特性及其响应起主导作用，据此，人们提出了集中参数模型。</p>
 </blockquote>
 <p>通常将标准单自由度“质-弹-阻”模型称为其所代表的原系统的单自由度等效振动系统。</p>
-<h1>单自由度系统的自由振动</h1>
-<h2 id="构成离散系统的自由振动">构成离散系统的自由振动</h2>
-<p><img src="https://user-images.githubusercontent.com/73486724/178445834-3ab1783c-0096-4c12-9c17-b788c4abbf4a.png" alt="TE0A6I_4D7(BFLW7@F$`4L0"></p>
-<p>实际弹簧的力与变形的关系为：<img src="https://math.now.sh?inline=F_s%20%3D%20kx%20%2B%20%5Cvarepsilon%20x%5E3" style="display:inline-block;margin: 0;"/></p>
+<h1 id="单自由度系统的自由振动"><a href="#单自由度系统的自由振动" class="headerlink" title="单自由度系统的自由振动"></a>单自由度系统的自由振动</h1><h2 id="构成离散系统的自由振动"><a href="#构成离散系统的自由振动" class="headerlink" title="构成离散系统的自由振动"></a>构成离散系统的自由振动</h2><p><img src="https://user-images.githubusercontent.com/73486724/178445834-3ab1783c-0096-4c12-9c17-b788c4abbf4a.png" alt="TE0A6I_4D7(BFLW7@F$`4L0"></p>
+<p>实际弹簧的力与变形的关系为：<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.355ex;" xmlns="http://www.w3.org/2000/svg" width="13.985ex" height="2.24ex" role="img" focusable="false" viewBox="0 -833.2 6181.2 990.3"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D439" d="M48 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H742Q749 676 749 669Q749 664 736 557T722 447Q720 440 702 440H690Q683 445 683 453Q683 454 686 477T689 530Q689 560 682 579T663 610T626 626T575 633T503 634H480Q398 633 393 631Q388 629 386 623Q385 622 352 492L320 363H375Q378 363 398 363T426 364T448 367T472 374T489 386Q502 398 511 419T524 457T529 475Q532 480 548 480H560Q567 475 567 470Q567 467 536 339T502 207Q500 200 482 200H470Q463 206 463 212Q463 215 468 234T473 274Q473 303 453 310T364 317H309L277 190Q245 66 245 60Q245 46 334 46H359Q365 40 365 39T363 19Q359 6 353 0H336Q295 2 185 2Q120 2 86 2T48 1Z"></path></g><g data-mml-node="mi" transform="translate(676,-150) scale(0.707)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g></g><g data-mml-node="mo" transform="translate(1335.4,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(2391.2,0)"><path data-c="1D458" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"></path></g><g data-mml-node="mi" transform="translate(2912.2,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(3706.4,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(4706.6,0)"><path data-c="1D700" d="M190 -22Q124 -22 76 11T27 107Q27 174 97 232L107 239L99 248Q76 273 76 304Q76 364 144 408T290 452H302Q360 452 405 421Q428 405 428 392Q428 381 417 369T391 356Q382 356 371 365T338 383T283 392Q217 392 167 368T116 308Q116 289 133 272Q142 263 145 262T157 264Q188 278 238 278H243Q308 278 308 247Q308 206 223 206Q177 206 142 219L132 212Q68 169 68 112Q68 39 201 39Q253 39 286 49T328 72T345 94T362 105Q376 103 376 88Q376 79 365 62T334 26T275 -8T190 -22Z"></path></g><g data-mml-node="msup" transform="translate(5172.6,0)"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mn" transform="translate(605,363) scale(0.707)"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></g></g></g></g></svg></mjx-container></p>
 <p><img src="https://user-images.githubusercontent.com/73486724/178447727-05232b47-52a7-42f6-be0c-b798e286005a.png" alt="image"></p>
-<p>扭转弹簧（角振动或扭转系统）<br>
-在小变形范围内:<img src="https://math.now.sh?inline=M_k%20%3D%20K_%7B%5Ctheta%7D%5Ccdot%20%5Ctheta" style="display:inline-block;margin: 0;"/><br>
-<img src="https://math.now.sh?inline=K_%7B%5Ctheta%7D" style="display:inline-block;margin: 0;"/>:扭转弹簧刚度，N·m/rad</p>
-<h3 id="弹性元件">弹性元件</h3>
-<p><img src="https://user-images.githubusercontent.com/73486724/178448625-0348f2e0-7160-4688-8bad-6786ca39a943.png" alt="image"></p>
-<h3 id="阻尼元件">阻尼元件</h3>
-<ol>
+<p>扭转弹簧（角振动或扭转系统）<br>在小变形范围内:$M<em>k = K</em>{\theta}\cdot\theta$</p>
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.355ex;" xmlns="http://www.w3.org/2000/svg" width="2.859ex" height="1.901ex" role="img" focusable="false" viewBox="0 -683 1263.6 840.1"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D43E" d="M285 628Q285 635 228 637Q205 637 198 638T191 647Q191 649 193 661Q199 681 203 682Q205 683 214 683H219Q260 681 355 681Q389 681 418 681T463 682T483 682Q500 682 500 674Q500 669 497 660Q496 658 496 654T495 648T493 644T490 641T486 639T479 638T470 637T456 637Q416 636 405 634T387 623L306 305Q307 305 490 449T678 597Q692 611 692 620Q692 635 667 637Q651 637 651 648Q651 650 654 662T659 677Q662 682 676 682Q680 682 711 681T791 680Q814 680 839 681T869 682Q889 682 889 672Q889 650 881 642Q878 637 862 637Q787 632 726 586Q710 576 656 534T556 455L509 418L518 396Q527 374 546 329T581 244Q656 67 661 61Q663 59 666 57Q680 47 717 46H738Q744 38 744 37T741 19Q737 6 731 0H720Q680 3 625 3Q503 3 488 0H478Q472 6 472 9T474 27Q478 40 480 43T491 46H494Q544 46 544 71Q544 75 517 141T485 216L427 354L359 301L291 248L268 155Q245 63 245 58Q245 51 253 49T303 46H334Q340 37 340 35Q340 19 333 5Q328 0 317 0Q314 0 280 1T180 2Q118 2 85 2T49 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Z"></path></g><g data-mml-node="TeXAtom" transform="translate(882,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"></path></g></g></g></g></g></svg></mjx-container>:扭转弹簧刚度，N·m/rad  </p>
+<h3 id="弹性元件"><a href="#弹性元件" class="headerlink" title="弹性元件"></a>弹性元件</h3><p><img src="https://user-images.githubusercontent.com/73486724/178448625-0348f2e0-7160-4688-8bad-6786ca39a943.png" alt="image"></p>
+<h3 id="阻尼元件"><a href="#阻尼元件" class="headerlink" title="阻尼元件"></a>阻尼元件</h3><ol>
 <li>粘滞阻尼</li>
 <li>干摩擦阻尼（库伦阻尼）</li>
-<li>滞后阻尼<br>
-<img src="https://user-images.githubusercontent.com/73486724/178450395-076f8c28-c0da-4f36-b89d-e3fd8eae8fa7.png" alt="image"><br>
-如无特别说明, 本课程所涉及的阻尼均指粘滞阻尼, 其阻尼力<img src="https://math.now.sh?inline=F_d" style="display:inline-block;margin: 0;"/>与阻尼器(用 c 表示)两端的相对速度成正比, 如图所示, 其中比例系数 c 称为粘性阻尼系数, 其单位为牛顿秒/米<img src="https://math.now.sh?inline=N%20%5Ccdot%20s%20%5Ccdot%20m%5E%7B-1%7D" style="display:inline-block;margin: 0;"/>。</li>
+<li>滞后阻尼</li>
 </ol>
-<p style=""><img src="https://math.now.sh?from=F%20%3D%20c%5Cddot%20x%0A" /></p><h3 id="惯性元件">惯性元件</h3>
-<p>系统的质量元件，提供惯性力。</p>
-<p style=""><img src="https://math.now.sh?from=F_m%20%3D%20m%20%5Cddot%20x%28t%29%0A" /></p><p style=""><img src="https://math.now.sh?from=M_m%20%3D%20J%20%5Cddot%20%5Cvarphi%28t%29%0A" /></p><h2 id="等效刚度">等效刚度</h2>
-<h3 id="弹性元件的组合">弹性元件的组合</h3>
-<p>并联：位移相等，$K_{eq} = \Sigma k_i $<br>
-串联：恢复力相等，<img src="https://math.now.sh?inline=K_%7Beq%7D%20%3D%20%5B%5CSigma%20%5Cfrac%7B1%7D%7Bk_i%7D%5D" style="display:inline-block;margin: 0;"/><br>
-<strong>思考</strong><br>
-<img src="https://user-images.githubusercontent.com/73486724/178452323-400afa69-8c0a-4768-97ad-511b2981d138.png" alt="image"></p>
-<p>m = 0：并联<br>
-m ≠ 0：串联</p>
+<p><img src="https://user-images.githubusercontent.com/73486724/178450395-076f8c28-c0da-4f36-b89d-e3fd8eae8fa7.png" alt="image"><br>如无特别说明, 本课程所涉及的阻尼均指粘滞阻尼, 其阻尼力<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.355ex;" xmlns="http://www.w3.org/2000/svg" width="2.474ex" height="1.894ex" role="img" focusable="false" viewBox="0 -680 1093.7 837.1"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D439" d="M48 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H742Q749 676 749 669Q749 664 736 557T722 447Q720 440 702 440H690Q683 445 683 453Q683 454 686 477T689 530Q689 560 682 579T663 610T626 626T575 633T503 634H480Q398 633 393 631Q388 629 386 623Q385 622 352 492L320 363H375Q378 363 398 363T426 364T448 367T472 374T489 386Q502 398 511 419T524 457T529 475Q532 480 548 480H560Q567 475 567 470Q567 467 536 339T502 207Q500 200 482 200H470Q463 206 463 212Q463 215 468 234T473 274Q473 303 453 310T364 317H309L277 190Q245 66 245 60Q245 46 334 46H359Q365 40 365 39T363 19Q359 6 353 0H336Q295 2 185 2Q120 2 86 2T48 1Z"></path></g><g data-mml-node="mi" transform="translate(676,-150) scale(0.707)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g></g></g></g></svg></mjx-container>与阻尼器(用 c 表示)两端的相对速度成正比, 如图所示, 其中比例系数 c 称为粘性阻尼系数, 其单位为牛顿秒/米<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="10.558ex" height="1.912ex" role="img" focusable="false" viewBox="0 -833.9 4666.6 844.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"></path></g><g data-mml-node="mo" transform="translate(1110.2,0)"><path data-c="22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path></g><g data-mml-node="mi" transform="translate(1610.4,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="mo" transform="translate(2301.7,0)"><path data-c="22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path></g><g data-mml-node="msup" transform="translate(2801.9,0)"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="TeXAtom" transform="translate(911,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(778,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></g></g></svg></mjx-container>。</p>
+<script type="math/tex; mode=display">F = c \ddot x</script><h3 id="惯性元件"><a href="#惯性元件" class="headerlink" title="惯性元件"></a>惯性元件</h3><p>系统的质量元件，提供惯性力。</p>
+<script type="math/tex; mode=display">F_m = m \ddot x(t)</script><script type="math/tex; mode=display">M_m = J \ddot \varphi(t)</script><h2 id="等效刚度"><a href="#等效刚度" class="headerlink" title="等效刚度"></a>等效刚度</h2><p>详细见文件<a target="_blank" rel="noopener" href="https://github.com/Lyuehua/MyImages/files/9102446/02-01-.pdf">02-01-等效刚度.pdf</a></p>
+<h3 id="弹性元件的组合"><a href="#弹性元件的组合" class="headerlink" title="弹性元件的组合"></a>弹性元件的组合</h3><p>并联：位移相等，$K<em>{eq} = \Sigma k_i <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.452ex;" xmlns="http://www.w3.org/2000/svg" width="20.362ex" height="2.149ex" role="img" focusable="false" viewBox="0 -750 9000 950"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">串</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">联</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">：</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">恢</text></g><g data-mml-node="mi" transform="translate(4000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">复</text></g><g data-mml-node="mi" transform="translate(5000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">力</text></g><g data-mml-node="mi" transform="translate(6000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">相</text></g><g data-mml-node="mi" transform="translate(7000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">等</text></g><g data-mml-node="mi" transform="translate(8000,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">，</text></g></g></g></svg></mjx-container>K</em>{eq} = [\Sigma \frac{1}{k_i}]$<br><strong>思考</strong><br><img src="https://user-images.githubusercontent.com/73486724/178452323-400afa69-8c0a-4768-97ad-511b2981d138.png" alt="image"></p>
+<p>m = 0：并联<br>m ≠ 0：串联  </p>
 <blockquote>
 <p>m = 0 时，一旦有不平衡的力，加速度瞬间达到无穷大，两边的力必然平衡，为串联。</p>
 </blockquote>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+ 实际工程的弹性元件比较复杂，为了方便分析，通常将复杂弹性元件系统简</span></span><br><span class="line"><span class="addition">+ 化为一个等价的弹性元件，要通过弹性元件系统等效刚度的计算来实现。</span></span><br></pre></td></tr></table></figure>
-<p><strong>将复杂弹性元件系统简化为一个简单的弹性元件，关键是二者刚度相等。</strong></p>
-
+<p><strong>将复杂弹性元件系统简化为一个简单的弹性元件，关键是二者刚度相等。</strong><br>确定等效刚度的一般方法；弹性元件为储能元件，只有等效弹簧在任意时刻储蓄的势能均与原系统相等时，等效系统才与原系统等效。可以利用势能相等的原理来确定等效刚度。<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.023ex;" xmlns="http://www.w3.org/2000/svg" width="1.999ex" height="1.551ex" role="img" focusable="false" viewBox="0 -675.5 883.6 685.5"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="mi" transform="translate(502,363) scale(0.707)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g></g></g></g></svg></mjx-container></p>
+<h1 id="单自由度系统的运动方程"><a href="#单自由度系统的运动方程" class="headerlink" title="单自由度系统的运动方程"></a>单自由度系统的运动方程</h1><h2 id="无阻尼自由振动"><a href="#无阻尼自由振动" class="headerlink" title="无阻尼自由振动"></a>无阻尼自由振动</h2>
     </div>
 
     
@@ -287,7 +383,10 @@ m ≠ 0：串联</p>
     <a href="/2022/07/03/test/" rel="prev" title="test">
       <i class="fa fa-chevron-left"></i> test
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/13/%E5%BE%AE%E7%A7%AF%E5%88%86-2%E8%A7%A3%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" rel="next" title="微积分-2解微分方程">
+      微积分-2解微分方程 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -346,28 +445,28 @@ m ≠ 0：串联</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">单自由度系统的自由振动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E6%88%90%E7%A6%BB%E6%95%A3%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%87%AA%E7%94%B1%E6%8C%AF%E5%8A%A8"><span class="nav-number">1.1.</span> <span class="nav-text">构成离散系统的自由振动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%B9%E6%80%A7%E5%85%83%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">弹性元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%BB%E5%B0%BC%E5%85%83%E4%BB%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">阻尼元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%AF%E6%80%A7%E5%85%83%E4%BB%B6"><span class="nav-number">1.1.3.</span> <span class="nav-text">惯性元件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E6%95%88%E5%88%9A%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">等效刚度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%B9%E6%80%A7%E5%85%83%E4%BB%B6%E7%9A%84%E7%BB%84%E5%90%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">弹性元件的组合</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E8%87%AA%E7%94%B1%E5%BA%A6%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%87%AA%E7%94%B1%E6%8C%AF%E5%8A%A8"><span class="nav-number">1.</span> <span class="nav-text">单自由度系统的自由振动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E6%88%90%E7%A6%BB%E6%95%A3%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%87%AA%E7%94%B1%E6%8C%AF%E5%8A%A8"><span class="nav-number">1.1.</span> <span class="nav-text">构成离散系统的自由振动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%B9%E6%80%A7%E5%85%83%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">弹性元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%BB%E5%B0%BC%E5%85%83%E4%BB%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">阻尼元件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%AF%E6%80%A7%E5%85%83%E4%BB%B6"><span class="nav-number">1.1.3.</span> <span class="nav-text">惯性元件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E6%95%88%E5%88%9A%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">等效刚度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%B9%E6%80%A7%E5%85%83%E4%BB%B6%E7%9A%84%E7%BB%84%E5%90%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">弹性元件的组合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E8%87%AA%E7%94%B1%E5%BA%A6%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E5%8A%A8%E6%96%B9%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">单自由度系统的运动方程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E9%98%BB%E5%B0%BC%E8%87%AA%E7%94%B1%E6%8C%AF%E5%8A%A8"><span class="nav-number">2.1.</span> <span class="nav-text">无阻尼自由振动</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">低碳钢的屈服极限</p>
-  <div class="site-description" itemprop="description">不积跬步无以至千里</div>
+  <div class="site-description" itemprop="description">个人学习小站</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -414,7 +513,7 @@ m ≠ 0：串联</p>
   </span>
   <span class="author" itemprop="copyrightHolder">低碳钢的屈服极限</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
         
@@ -440,7 +539,7 @@ m ≠ 0：串联</p>
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
@@ -467,6 +566,61 @@ m ≠ 0：串联</p>
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'true';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
