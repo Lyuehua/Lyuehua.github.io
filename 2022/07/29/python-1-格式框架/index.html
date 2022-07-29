@@ -20,19 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="¶0 用法 12345var md &#x3D; window.markdownit();md.use(window.markdownitLatex2img,   &amp;#123;style: &quot;filter: opacity(75%);transform:scale(0.75);text-align:center;&quot;&amp;#125; &#x2F;&#x2F;可选);md.render(input.value);">
+  <meta name="description" content="¶注释  单行注释，以  #  开头 多行注释，以 ‘’’ 开头和结尾  ¶命名  命名规则:大小写字母、数字、 下划线和汉字等字符及组合 python 的命名是大小写敏感的、首字符不能是数字、不与保留字相同  保留字： 12345678910# 注意大小写and     as          assert      breakclass   continue    def         de">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2022/07/03/test/index.html">
+<meta property="og:title" content="python-1.格式框架">
+<meta property="og:url" content="http://example.com/2022/07/29/python-1-%E6%A0%BC%E5%BC%8F%E6%A1%86%E6%9E%B6/index.html">
 <meta property="og:site_name" content="不积跬步无以至千里">
-<meta property="og:description" content="¶0 用法 12345var md &#x3D; window.markdownit();md.use(window.markdownitLatex2img,   &amp;#123;style: &quot;filter: opacity(75%);transform:scale(0.75);text-align:center;&quot;&amp;#125; &#x2F;&#x2F;可选);md.render(input.value);">
+<meta property="og:description" content="¶注释  单行注释，以  #  开头 多行注释，以 ‘’’ 开头和结尾  ¶命名  命名规则:大小写字母、数字、 下划线和汉字等字符及组合 python 的命名是大小写敏感的、首字符不能是数字、不与保留字相同  保留字： 12345678910# 注意大小写and     as          assert      breakclass   continue    def         de">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-03T01:36:36.000Z">
-<meta property="article:modified_time" content="2022-07-03T02:05:18.000Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/73486724/181770791-944510cd-27e9-415c-9356-31eb1b9c6eae.png">
+<meta property="article:published_time" content="2022-07-29T13:06:26.000Z">
+<meta property="article:modified_time" content="2022-07-29T13:41:54.000Z">
 <meta property="article:author" content="低碳钢的屈服极限">
+<meta property="article:tag" content="Language">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/73486724/181770791-944510cd-27e9-415c-9356-31eb1b9c6eae.png">
 
-<link rel="canonical" href="http://example.com/2022/07/03/test/">
+<link rel="canonical" href="http://example.com/2022/07/29/python-1-%E6%A0%BC%E5%BC%8F%E6%A1%86%E6%9E%B6/">
 
 
 <script id="page-configurations">
@@ -45,7 +48,7 @@
   };
 </script>
 
-  <title>test | 不积跬步无以至千里</title>
+  <title>python-1.格式框架 | 不积跬步无以至千里</title>
   
 
 
@@ -76,7 +79,119 @@
   </style>
 </noscript>
 
-</head>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -160,7 +275,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/03/test/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/29/python-1-%E6%A0%BC%E5%BC%8F%E6%A1%86%E6%9E%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -173,7 +288,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          test
+          python-1.格式框架
         </h1>
 
         <div class="post-meta">
@@ -184,7 +299,20 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-07-03 09:36:36 / 修改时间：10:05:18" itemprop="dateCreated datePublished" datetime="2022-07-03T09:36:36+08:00">2022-07-03</time>
+              <time title="创建时间：2022-07-29 21:06:26 / 修改时间：21:41:54" itemprop="dateCreated datePublished" datetime="2022-07-29T21:06:26+08:00">2022-07-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Language/" itemprop="url" rel="index"><span itemprop="name">Language</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Language/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
             </span>
 
           
@@ -198,87 +326,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="0-用法"><a class="header-anchor" href="#0-用法">¶</a>0 用法</h2>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> md = <span class="variable language_">window</span>.<span class="title function_">markdownit</span>();</span><br><span class="line">md.<span class="title function_">use</span>(<span class="variable language_">window</span>.<span class="property">markdownitLatex2img</span>, </span><br><span class="line">  &#123;<span class="attr">style</span>: <span class="string">&quot;filter: opacity(75%);transform:scale(0.75);text-align:center;&quot;</span>&#125; <span class="comment">//可选</span></span><br><span class="line">);</span><br><span class="line">md.<span class="title function_">render</span>(input.<span class="property">value</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="1-数学公式"><a class="header-anchor" href="#1-数学公式">¶</a>1 数学公式</h2>
-<h3 id="1-1-内联公式"><a class="header-anchor" href="#1-1-内联公式">¶</a>1.1 内联公式</h3>
-<p><strong>开头的<code>$</code>必须在其右边紧跟一个非空格字符，而结尾的<code>$</code>必须在其左边紧接一个非空格字符，并且不能紧跟一个数字。</strong></p>
+        <h1 id="注释"><a class="header-anchor" href="#注释">¶</a>注释</h1>
 <ul>
-<li>勾股定理: $a^2+b^2=c^2$</li>
-<li>等差数列求和公式: $S_{n}=n a_{1}+\frac{n(n-1)}{2} d, n \in N^{*}$</li>
-<li>牛顿-莱布尼茨公式: $\int_{a}^{b} f(x) d x=F(b)-F(a)=\left.F(x)\right|_{a} ^{b}$</li>
-<li>二项分布: $P_{n}(k)=C_{n}^{k} p^{k} q^{n-k} \quad k=0,1,2 \ldots \ldots, n$</li>
+<li>单行注释，以 <font color="red"> # </font> 开头</li>
+<li>多行注释，以 ‘’’ 开头和结尾</li>
 </ul>
-<h3 id="1-2-块公式"><a class="header-anchor" href="#1-2-块公式">¶</a>1.2 块公式</h3>
-<p>正态分布$X \sim N(\mu,\sigma^2)$:<br>
-$$f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</p>
-<p>斐波那契数列$A_n=A_{n-1}+A_{n-2}$,前后两项的比值逐渐收敛到黄金分割比例<br>
-$$\lim_{n\to \infty}\frac{A_{n-1}}{A_n}=\frac{\sqrt{5}-1}{2}.$$</p>
-<p>因式分解<br>
-$$\begin{split}(x−1)(x−3)&amp;=x^2−4x+3 \<br>
-&amp;=x^2−4x+4−1 \<br>
-&amp;=(x−2)^2−1<br>
-\end{split}<br>
-$$</p>
-<p>狄利克雷函数</p>
-<p>$$<br>
-D(x)=<br>
-\begin{cases}<br>
-1,&amp; x \in Q \<br>
-0,&amp; x \notin Q<br>
-\end{cases}<br>
-$$</p>
-<p>高斯公式<br>
-$$<br>
-\iiint_{\Omega}\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right) d v=\iint_{\Sigma} P d y d z+Q d z d x+R d x d y<br>
-$$</p>
-<p>范德蒙行列式<br>
-$$D_{n-1}=\left|\begin{array}{cccc}<br>
-1 &amp; 1 &amp; \dots &amp; 1 \<br>
-x_{2} &amp; x_{3} &amp; \dots &amp; x_{n} \<br>
-\vdots &amp; \vdots &amp; &amp; \vdots \<br>
-x_{2}^{n-2} &amp; x_{3}^{n-2} &amp; \dots &amp; x_{n}^{n-2}<br>
-\end{array}\right|=\prod_{2 \leq j&lt;i \leq n}\left(x_{i}-x_{j}\right)$$</p>
-<p>线性方程组<br>
-$$\left{\begin{aligned}<br>
-a_{11} x_{1}+a_{12} x_{2}+\cdots+a_{1 n} x_{n} &amp;=b_{1} \<br>
-a_{21} x_{1}+a_{22} x_{2}+\cdots+a_{2 n} x_{n} &amp;=b_{2} \<br>
-\cdots \cdots \cdots \<br>
-a_{m 1} x_{1}+a_{m 2} x_{2}+\cdots+a_{m n} x_{n} &amp;=b_{m}<br>
-\end{aligned}\right.$$</p>
-<h2 id="2-物理公式"><a class="header-anchor" href="#2-物理公式">¶</a>2 物理公式</h2>
+<h1 id="命名"><a class="header-anchor" href="#命名">¶</a>命名</h1>
 <ul>
-<li>牛顿第一定律: $\sum \vec{F}_{i}=\frac{\mathrm{d} \vec{v}}{\mathrm{d} t}=0$</li>
-<li>牛顿第二定律: $\vec{F}=\frac{\mathrm{d} m}{\mathrm{d} t} \vec{v}+m \frac{\mathrm{d} \vec{v}}{\mathrm{d} t}=\frac{\mathrm{d} m}{\mathrm{d} t} \vec{v}+m \vec{a}=\frac{\mathrm{d} m}{\mathrm{d} t} \vec{v}+m \frac{\mathrm{d}^{2} \vec{r}}{\mathrm{d} t^{2}}$</li>
-<li>牛顿第三定律: $\overrightarrow{F_{12}}=-\overrightarrow{F_{21}}$</li>
-<li>质能守恒: $E=mc^2$</li>
+<li>命名规则:大小写字母、数字、 下划线和汉字等字符及组合</li>
+<li>python 的命名是大小写敏感的、首字符不能是数字、不与保留字相同</li>
 </ul>
-<p>万有引力定律: $F=\frac{G M m}{r^{2}}$<br>
-$$G \frac{m M}{(r+h)^{2}}=m \frac{\nu^{2}}{(r+h)}$$<br>
-基尔霍夫定律<br>
-$$\left[\frac{\partial\left(\Delta_{r} H_{m}\right)}{\partial T}\right]<em>{p}=\sum</em>{B} v_{B} C_{p, m}(B)$$<br>
-热力学第二定律<br>
-$$d S \geq \frac{\delta Q}{T}$$</p>
-<h2 id="3-化学公式"><a class="header-anchor" href="#3-化学公式">¶</a>3 化学公式</h2>
-<p>离子反应与沉淀: $\ce{SO4^2- + Ba^2+ -&gt; BaSO4 v}$</p>
-<p>氮气氢气合成氨<br>
-$$<br>
-\ce{N2 + 3H2 &lt;=&gt;T[高温、加压][催化剂] 2NH3}<br>
-$$</p>
-<p>化学平衡常数:$\mathrm{Zn}+2 \mathrm{HCl}(\mathrm{aq})=\mathrm{H}<em>{2}+\mathrm{ZnCl}</em>{2} \quad(\mathrm{aq})$<br>
-$$K^{\theta}=\frac{\left[p\left(\mathrm{H}<em>{2}\right) / p^{\theta}\right]\left[c\left(\mathrm{ZnCl}</em>{2}\right)\right]}{c^{2}(\mathrm{HC})}$$</p>
-<h2 id="4-生物公式"><a class="header-anchor" href="#4-生物公式">¶</a>4 生物公式</h2>
-<p>光合作用</p>
-<h2 id="5-语法参考"><a class="header-anchor" href="#5-语法参考">¶</a>5 语法参考</h2>
-<p><a target="_blank" rel="noopener" href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">MathJax basic tutorial and quick reference</a></p>
-<div style="text-align:right;">
-  <p>
-    更新日期: 2020年6月1日
-  </p>
-  <p >
-    © MakerGYT 2020
-  </p>
-</div>
+<p>保留字：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意大小写</span></span><br><span class="line"><span class="keyword">and</span>     <span class="keyword">as</span>          <span class="keyword">assert</span>      <span class="keyword">break</span></span><br><span class="line"><span class="keyword">class</span>   <span class="title class_">continue</span>    <span class="keyword">def</span>         <span class="title function_">del</span></span><br><span class="line"><span class="keyword">elif</span>    <span class="keyword">else</span>        <span class="keyword">except</span>      <span class="keyword">finally</span></span><br><span class="line"><span class="keyword">for</span>     <span class="keyword">from</span>        <span class="keyword">global</span>      <span class="keyword">if</span></span><br><span class="line"><span class="keyword">import</span>  <span class="keyword">in</span>          <span class="keyword">is</span>          <span class="keyword">lambda</span></span><br><span class="line"><span class="keyword">not</span>     <span class="keyword">nonlocal</span>    <span class="keyword">or</span>          <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">raise</span>   <span class="keyword">return</span>      <span class="keyword">try</span>         <span class="keyword">while</span></span><br><span class="line"><span class="keyword">with</span>    <span class="keyword">yield</span>       <span class="literal">False</span>       <span class="literal">None</span></span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<h1 id="数字类型"><a class="header-anchor" href="#数字类型">¶</a>数字类型</h1>
+<ul>
+<li>整数</li>
+<li>浮点数</li>
+<li>字符：单引号括入，‘C’</li>
+<li>字符串：双引号括入"10, 011, 101"，
+<ul>
+<li><strong>在字符串中的编号是从 0 开始的而不是1</strong></li>
+<li>字符串索引的两种方式：1.正向递增序号；2.反向递减序号<br>
+<img src="https://user-images.githubusercontent.com/73486724/181770791-944510cd-27e9-415c-9356-31eb1b9c6eae.png" alt="image"></li>
+<li>索引：返回字符串中单个字符。&lt;字符串名&gt;[数字]，如：<code>“低碳钢的屈服极限”[0]</code> 或者 <code>TempStr[-1]</code>表示名为 TempStr 的字符串的倒数第一位字符。</li>
+<li>切片：返回字符串中一段字符子串。&lt;字符串名&gt;[数字:数字]，<code>“低碳钢的屈服极限”[1:3]</code> 表示输出字符串的第1个字符到第2个字符，但不到第3个字符，即“碳钢”，或者 <code>TempStr[0:-1]</code> 表示从0开始但不到字符串的最后一个字符的字符串，相当于把字符串中的最后一个字符去掉。</li>
+</ul>
+</li>
+<li>列表（类似于matlab中的数列）：中括号括入<code>[10, 011, 101]</code>，<code>['f', 'F']</code></li>
+</ul>
 
     </div>
 
@@ -287,6 +362,9 @@ $$K^{\theta}=\frac{\left[p\left(\mathrm{H}<em>{2}\right) / p^{\theta}\right]\lef
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Language/" rel="tag"># Language</a>
+          </div>
 
         
 
@@ -294,13 +372,10 @@ $$K^{\theta}=\frac{\left[p\left(\mathrm{H}<em>{2}\right) / p^{\theta}\right]\lef
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/06/25/%E5%AF%BC%E8%88%AA%E5%8E%9F%E7%90%86/" rel="prev" title="导航原理">
-      <i class="fa fa-chevron-left"></i> 导航原理
+    <a href="/2022/07/25/%E5%BE%AE%E7%A7%AF%E5%88%86-1%E5%87%BD%E6%95%B0/" rel="prev" title="微积分-1函数">
+      <i class="fa fa-chevron-left"></i> 微积分-1函数
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/07/12/%E7%BB%93%E6%9E%84%E5%8A%A8%E5%8A%9B%E5%AD%A6-1%E5%8D%95%E8%87%AA%E7%94%B1%E5%BA%A6%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%87%AA%E7%94%B1%E6%8C%AF%E5%8A%A8/" rel="next" title="结构动力学-1单自由度系统的自由振动">
-      结构动力学-1单自由度系统的自由振动 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -359,7 +434,7 @@ $$K^{\theta}=\frac{\left[p\left(\mathrm{H}<em>{2}\right) / p^{\theta}\right]\lef
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E7%94%A8%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">0 用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">1 数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%86%85%E8%81%94%E5%85%AC%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 内联公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%9D%97%E5%85%AC%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 块公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%89%A9%E7%90%86%E5%85%AC%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">2 物理公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8C%96%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">3 化学公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%94%9F%E7%89%A9%E5%85%AC%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">4 生物公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%AF%AD%E6%B3%95%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">5 语法参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-number">1.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E5%90%8D"><span class="nav-number">2.</span> <span class="nav-text">命名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">数字类型</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
